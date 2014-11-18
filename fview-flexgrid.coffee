@@ -102,4 +102,4 @@ FView.ready ->
         specs.push spec
       specs
 
-  View.registerView 'FlexGrid', FlexGrid
+  FView.registerView 'FlexGrid', FlexGrid
