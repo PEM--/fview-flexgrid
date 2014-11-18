@@ -9,5 +9,16 @@ head
 body
   
 template(name='famousInit')
-  +Surface class='red-bg'
-    | Hi there
+  +shootIt
+
+template(name='shootIt')
+  //+FlexGrid size='[undefined,undefined]' itemSize='[150,100]'
+    +famousEach items
+      +Surface class='red-bg'
+        |= name
+  +GridLayout size='[undefined,undefined]' dimensions='[3,1]'
+    +famousEach items
+      +Surface class='red-bg' template='stuff'
+template(name='stuff')
+  p= name
+    

@@ -1,4 +1,4 @@
-css = new CSSC
+css = new CSSC()
 css.add '.red-bg',
   backgroundColor: CSSC.red
   color: CSSC.yellow
@@ -14,3 +14,20 @@ famous.polyfills
 
 # Required by this package
 Easing = famous.transitions.Easing
+View = famous.core.View
+Entity = famous.core.Entity
+Modifier = famous.core.Modifier
+Transform = famous.core.Transform
+Transitionable = famous.transitions.Transitionable
+TransitionableTransform = famous.transitions.TransitionableTransform
+Easing = famous.transitions.Easing
+
+FView.ready ->
+  FView.registerView 'GridLayout', famous.views.GridLayout
+
+Template.shootIt.helpers
+  items: [
+    {name: 'Some stuff' }
+    {name: 'Other stuff' }
+    {name: 'Additional stuff'}
+  ]
