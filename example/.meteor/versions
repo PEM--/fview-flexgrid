@@ -8,6 +8,7 @@ blaze@2.0.3
 boilerplate-generator@1.0.1
 callback-hook@1.0.1
 check@1.0.2
+coffeescript@1.0.4
 ctl-helper@1.0.4
 ctl@1.0.2
 ddp@1.0.11
@@ -15,12 +16,14 @@ deps@1.0.5
 ejson@1.0.4
 fastclick@1.0.1
 follower-livedata@1.0.2
+gadicohen:famous-views@0.1.26
 geojson-utils@1.0.1
 html-tools@1.0.2
 htmljs@1.0.2
 http@1.0.8
 id-map@1.0.1
 insecure@1.0.1
+jag:pince@0.0.5
 jquery@1.0.1
 json@1.0.1
 launch-screen@1.0.0
@@ -32,9 +35,10 @@ minifiers@1.1.2
 minimongo@1.0.5
 mobile-status-bar@1.0.1
 mongo@1.0.8
+mquandalle:jade@0.2.9
 observe-sequence@1.0.3
 ordered-dict@1.0.1
-pierreeric:fview-flexgrid@1.0.0
+pierreeric:fview-flexgrid@0.1.0
 random@1.0.1
 reactive-dict@1.0.4
 reactive-var@1.0.3
