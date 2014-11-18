@@ -10,9 +10,7 @@ Package.onUse(function(api) {
   api.use('mjn:famous@0.3.1_2', 'client', { weak: true });
   api.use('raix:famono@0.9.16', { weak: true });
   api.use([
-    'templating@1.0.5',
     'coffeescript@1.0.4',
-    'mquandalle:jade@0.2.9',
     'gadicohen:famous-views@0.1.26'
   ], 'client');
   api.addFiles('fview-flexgrid.coffee', 'client');
