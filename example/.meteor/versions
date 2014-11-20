@@ -39,9 +39,9 @@ ordered-dict@1.0.1
 pierreeric:cssc-colors@1.0.4
 pierreeric:cssc-famous@1.0.1
 pierreeric:cssc-normalize@1.0.1
-pierreeric:cssc@1.0.0
+pierreeric:cssc@1.0.3
 pierreeric:fview-flexgrid@0.1.0
-raix:famono@0.9.16
+raix:famono@0.9.18
 random@1.0.1
 reactive-dict@1.0.4
 reactive-var@1.0.3

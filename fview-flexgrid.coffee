@@ -1,5 +1,6 @@
 FView.ready ->
   View = famous.core.View
+  ViewSequence = famous.core.ViewSequence
   Entity = famous.core.Entity
   Modifier = famous.core.Modifier
   Transform = famous.core.Transform
@@ -13,7 +14,7 @@ FView.ready ->
       marginSide: undefined
       gutterCol: undefined
       gutterRow: undefined
-      itemSize: undefined
+      itemSize: [150, 100]
       transition:
         duration: 500
         curve: Easing.outBack
@@ -42,7 +43,7 @@ FView.ready ->
     _calcPositions: (spacing) ->
       positions = []
       col = row = 0
-      for item in @_items
+      for item in @_sequence
         xPos = spacing.marginSide + col * spacing.ySpacing
         yPos = @options.marginTop + row * (@options.itemSize[1] + @options.gutterRow)
         positions.push [xPos, yPos, 0]
@@ -71,7 +72,12 @@ FView.ready ->
       transformTransitionable.setTranslate position, @options.transition
       sizeTransitionable.set size, @options.transition
 
-    sequenceFrom: (items) -> @_items = items
+    sequenceFrom: (sequence) ->
+      console.log 'sequenceFrom', @, arguments
+      sequence = _.pluck sequence, 'views'
+      @_sequence = if sequence instanceof Array
+        new ViewSequence sequence
+      else sequence
 
     render: -> @id
 
@@ -80,9 +86,10 @@ FView.ready ->
         return
       [@_cachedWidth, @_height]
 
-    commit: (context) ->
-      width = context.size[0]
+    commit: (context) =>
+      console.log @_sequence
       specs = []
+      width = context.size[0]
       unless @_cachedWidth is width
         spacing = @_calcSpacing width
         size = @options.itemSize
@@ -91,14 +98,14 @@ FView.ready ->
           spacing.marginSide = 0
           size = [width, size[1]]
         positions = @_calcPositions spacing
-        for i in [0...@_items.length]
+        for i in [0...@_sequence.length]
           if @_modifiers[i] is undefined
             @_createModifier i, positions[i], size
           else
             @_animateModifier i, positions[i], size
         @_cachedWidth = width
       for i in [0...this._modifiers.length]
-        spec = @_modifiers[i].modify target: @_items[i].render()
+        spec = @_modifiers[i].modify target: @_sequence[i].render()
         specs.push spec
       specs
 

@@ -14,16 +14,16 @@ famous.polyfills
 
 # Required by this package
 Easing = famous.transitions.Easing
-View = famous.core.View
 Entity = famous.core.Entity
-Modifier = famous.core.Modifier
-Transform = famous.core.Transform
-Transitionable = famous.transitions.Transitionable
-TransitionableTransform = famous.transitions.TransitionableTransform
-Easing = famous.transitions.Easing
 
 FView.ready ->
   FView.registerView 'GridLayout', famous.views.GridLayout
+  console.info "%c\nFView started\n","font-weight: 300; color: #ec5f3e; font-size: x-large;font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;-webkit-font-smoothing: antialiased;"
+
+Template.shootIt.rendered = ->
+  console.log 'Including template', FView.from @, 'Container', (FView.byId 'container')
+  fview = FView.byId 'container'
+  #fview.view.commit fview.parent.node
 
 Template.shootIt.helpers
   items: [

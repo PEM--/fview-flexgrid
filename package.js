@@ -13,5 +13,5 @@ Package.onUse(function(api) {
     'coffeescript@1.0.4',
     'gadicohen:famous-views@0.1.26'
   ], 'client');
-  api.addFiles('fview-flexgrid.coffee', 'client');
+  api.addFiles(['fview-flexgrid.coffee', 'MyGridLayout.js'], 'client');
 });
