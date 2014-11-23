@@ -12,7 +12,8 @@ template(name='famousInit')
   +shootIt
 
 template(name='shootIt')
-  +FlexGrid id='container' size='[undefined,undefined]' itemSize='[150,100]'
-    +famousEach items
-      +Surface class='red-bg'
-        p= name
+  +Scrollview id='scrollview'
+    +FlexGrid id='flexgrid' size='[undefined,undefined]' itemSize='[150,100]'
+      +famousEach items
+        +Surface class='red-bg'
+          p= name

@@ -83,16 +83,16 @@ FView.ready ->
     sequenceFrom: (items) -> @_items = items
 
     render: ->
-      console.log 'render'
+      #console.log 'render'
       @id
 
     getSize: ->
-      console.log 'getSize'
+      #console.log 'getSize'
       return unless @_height
       [@_cachedWidth, @_height]
 
     commit: (context) ->
-      console.log 'commit'
+      #console.log 'commit'
       width = context.size[0]
       specs = []
       unless @_cachedWidth is width

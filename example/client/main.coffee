@@ -16,12 +16,14 @@ famous.polyfills
 ###
 Easing = famous.transitions.Easing
 Entity = famous.core.Entity
-famous.core.Engine
 famous.modifiers.StateModifier
 famous.surfaces.ContainerSurface
 ###
 
+Engine = null
+
 FView.ready ->
+  Engine = famous.core.Engine
   console.info "%c\nFView started\n", \
     "font-weight: 300; color: #ec5f3e; font-size: x-large; \
     font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif; \
@@ -30,8 +32,10 @@ FView.ready ->
 Template.famousInit.rendered = ->
   console.log 'Including template', FView.from @, 'Container', \
     (FView.byId 'container')
-  fview = FView.byId 'container'
-  #fview.view.commit fview.parent.node
+
+  fscrollview = FView.byId 'scrollview'
+  Engine.pipe [fscrollview._view]
+  fflexgrid = FView.byId 'flexgrid'
 
 Template.shootIt.helpers
   items: [
