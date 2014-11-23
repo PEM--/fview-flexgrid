@@ -1,3 +1,12 @@
+@View = null
+@ViewSequence = null
+@Entity = null
+@Modifier = null
+@Transform = null
+@Transitionable = null
+@TransitionableTransform = null
+@Easing = null
+
 FView.ready ->
   View = famous.core.View
   ViewSequence = famous.core.ViewSequence
@@ -9,7 +18,7 @@ FView.ready ->
   Easing = famous.transitions.Easing
 
   class FlexGrid extends View
-    DEFAULT_OPTIONS:
+    @DEFAULT_OPTIONS:
       marginTop: undefined
       marginSide: undefined
       gutterCol: undefined
@@ -20,7 +29,6 @@ FView.ready ->
         curve: Easing.outBack
 
     constructor: (@options)->
-      @constructor.DEFAULT_OPTIONS = @DEFAULT_OPTIONS
       super @options
       @_modifiers = []
       @_states = []
@@ -43,7 +51,7 @@ FView.ready ->
     _calcPositions: (spacing) ->
       positions = []
       col = row = 0
-      for item in @_sequence
+      for item in @_items
         xPos = spacing.marginSide + col * spacing.ySpacing
         yPos = @options.marginTop + row * (@options.itemSize[1] + @options.gutterRow)
         positions.push [xPos, yPos, 0]
@@ -72,24 +80,21 @@ FView.ready ->
       transformTransitionable.setTranslate position, @options.transition
       sizeTransitionable.set size, @options.transition
 
-    sequenceFrom: (sequence) ->
-      console.log 'sequenceFrom', @, arguments
-      sequence = _.pluck sequence, 'views'
-      @_sequence = if sequence instanceof Array
-        new ViewSequence sequence
-      else sequence
+    sequenceFrom: (items) -> @_items = items
 
-    render: -> @id
+    render: ->
+      console.log 'render'
+      @id
 
     getSize: ->
-      unless this._height
-        return
+      console.log 'getSize'
+      return unless @_height
       [@_cachedWidth, @_height]
 
-    commit: (context) =>
-      console.log @_sequence
-      specs = []
+    commit: (context) ->
+      console.log 'commit'
       width = context.size[0]
+      specs = []
       unless @_cachedWidth is width
         spacing = @_calcSpacing width
         size = @options.itemSize
@@ -98,14 +103,14 @@ FView.ready ->
           spacing.marginSide = 0
           size = [width, size[1]]
         positions = @_calcPositions spacing
-        for i in [0...@_sequence.length]
+        for i in [0...@_items.length]
           if @_modifiers[i] is undefined
             @_createModifier i, positions[i], size
           else
             @_animateModifier i, positions[i], size
         @_cachedWidth = width
       for i in [0...this._modifiers.length]
-        spec = @_modifiers[i].modify target: @_sequence[i].render()
+        spec = @_modifiers[i].modify target: @_items[i].render()
         specs.push spec
       specs
 

@@ -22,7 +22,7 @@
     ],
     [
       "gadicohen:famous-views",
-      "0.1.26"
+      "0.1.29"
     ],
     [
       "geojson-utils",
@@ -63,6 +63,10 @@
     [
       "ordered-dict",
       "1.0.1"
+    ],
+    [
+      "pierreeric:cssc",
+      "1.0.4"
     ],
     [
       "random",

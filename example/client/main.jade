@@ -12,15 +12,7 @@ template(name='famousInit')
   +shootIt
 
 template(name='shootIt')
-  //+FlexGrid id='container' size='[undefined,undefined]' itemSize='[150,100]'
-    +famousEach items
-      +Surface class='red-bg'
-        p= name
-  //+GridLayout id='container' size='[undefined,undefined]' dimensions='[3,1]'
-    +famousEach items
-      +Surface class='red-bg'
-        p= name
-  +MyGridLayout id='container' size='[undefined,undefined]' dimensions='[3,1]'
+  +FlexGrid id='container' size='[undefined,undefined]' itemSize='[150,100]'
     +famousEach items
       +Surface class='red-bg'
         p= name
