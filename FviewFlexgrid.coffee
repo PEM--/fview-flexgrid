@@ -19,13 +19,13 @@ FView.ready ->
 
   class FlexGrid extends View
     @DEFAULT_OPTIONS:
-      marginTop: undefined
-      marginSide: undefined
-      gutterCol: undefined
-      gutterRow: undefined
-      itemSize: [150, 100]
+      marginTop: 10
+      marginSide: 0
+      gutterCol: 10
+      gutterRow: 10
+      itemSize: [150, 150]
       transition:
-        duration: 500
+        duration: 300
         curve: Easing.outBack
 
     constructor: (@options)->
@@ -53,18 +53,20 @@ FView.ready ->
       col = row = 0
       for item in @_items
         xPos = spacing.marginSide + col * spacing.ySpacing
-        yPos = @options.marginTop + row * (@options.itemSize[1] + @options.gutterRow)
+        yPos = @options.marginTop + row * \
+          (@options.itemSize[1] + @options.gutterRow)
         positions.push [xPos, yPos, 0]
         col++
         if col is spacing.numCols
-          row++;
+          row++
           col = 0
       @_height = yPos + @options.itemSize[1] + @options.marginTop
       positions
 
     _createModifier: (index, position, size) ->
       transitionItem = {
-        transform: (new TransitionableTransform(Transform.translate.apply(null, position)))
+        transform: (new TransitionableTransform(Transform.translate.apply(null,\
+          position)))
       , size: (new Transitionable(size or @options.itemSize))
       }
 
@@ -82,17 +84,13 @@ FView.ready ->
 
     sequenceFrom: (items) -> @_items = items
 
-    render: ->
-      #console.log 'render'
-      @id
+    render: -> @id
 
     getSize: ->
-      #console.log 'getSize'
       return unless @_height
       [@_cachedWidth, @_height]
 
     commit: (context) ->
-      #console.log 'commit'
       width = context.size[0]
       specs = []
       unless @_cachedWidth is width
@@ -114,4 +112,5 @@ FView.ready ->
         specs.push spec
       specs
 
+  # TODO Create an auto registration mecanism
   FView.registerView 'FlexGrid', FlexGrid

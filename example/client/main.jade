@@ -7,13 +7,12 @@ head
   meta(name='apple-mobile-web-app-capable', content='yes')
   meta(name='mobile-web-app-capable', content='yes')
 body
-  
-template(name='famousInit')
-  +shootIt
+  +famousContext id="mainCtx"
+    +flexGridExample
 
-template(name='shootIt')
+template(name='flexGridExample')
   +Scrollview id='scrollview'
-    +FlexGrid id='flexgrid' size='[undefined,undefined]' itemSize='[150,100]'
+    +FlexGrid id='flexgrid' itemSize='[150,100]'
       +famousEach items
-        +Surface class='red-bg'
+        +Surface class='surf' properties=prop
           p= name
