@@ -49,6 +49,6 @@ Template.flexGridExample.helpers
     (
       {
         name: "Surface #{idx}"
-        prop: "backgroundColor: hsl(#{idx * 360 / NUM_SURFACES}, 60%, 40%)"
+        prop: "backgroundColor: hsl(#{idx * 360 / NUM_SURFACES}, 80%, 50%)"
       } for idx in [1..NUM_SURFACES]
     )

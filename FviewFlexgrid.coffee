@@ -23,9 +23,9 @@ FView.ready ->
       marginSide: 0
       gutterCol: 10
       gutterRow: 10
-      itemSize: [300, 150]
+      itemSize: [200, 150]
       transition:
-        duration: 300
+        duration: 500
         curve: Easing.outBack
 
     constructor: (@options)->
@@ -92,7 +92,6 @@ FView.ready ->
 
     commit: (context) ->
       width = context.size[0]
-      specs = []
       unless @_cachedWidth is width and @_cachedLength is @_sequence.length
         console.log 'Recalculate'
         spacing = @_calcSpacing width
@@ -109,6 +108,7 @@ FView.ready ->
             @_animateModifier i, positions[i], size
         @_cachedWidth = width
         @_cachedLength = @_sequence.length
+      specs = []
       for i in [0...this._modifiers.length]
         spec = @_modifiers[i].modify target: @_sequence[i].render()
         specs.push spec
