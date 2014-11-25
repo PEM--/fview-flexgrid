@@ -1,12 +1,3 @@
-@View = null
-@ViewSequence = null
-@Entity = null
-@Modifier = null
-@Transform = null
-@Transitionable = null
-@TransitionableTransform = null
-@Easing = null
-
 FView.ready ->
   View = famous.core.View
   ViewSequence = famous.core.ViewSequence
@@ -93,7 +84,6 @@ FView.ready ->
     commit: (context) ->
       width = context.size[0]
       unless @_cachedWidth is width and @_cachedLength is @_sequence.length
-        console.log 'Recalculate'
         spacing = @_calcSpacing width
         size = @options.itemSize
         if spacing.numCols < 2

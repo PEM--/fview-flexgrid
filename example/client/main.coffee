@@ -1,38 +1,34 @@
+# Theming done in CS
 css = new CSSC
-css.add '.surf',
-  color: CSSC.yellow
-  textAlign: 'center'
+shadow = "0 #{CSSC.px 3} #{CSSC.px 10} #{CSSC.black}"
+css
+  .add 'body',
+    backgroundColor: CSSC.darkgray
+    color: CSSC.white
+    textAlign: 'center'
+  .add '.surf',
+    lineHeight: CSSC.px 100
+    borderRadius: CSSC.px 5
+    textShadow: shadow
+    boxShadow: shadow
+
+# Set FView logging at its bare minimum
+Logger.setLevel 'famous-views', 'info'
 
 # Polyfills are necessary if you are using raix:famono
 famous.polyfills
-
-Logger.setLevel 'famous-views', 'info'
-
 # If you are using pierreeric:cssc-famous, you don't need this line
 # as it imports the required CSS files for Famo.us in CS (therefore no
 # CSS file is required which speeds up your apps and avoid tempering
 # with the JS engine).
+#famous.core.famous
 
 # Required by this package
 # TODO See if import could be better created
-###
 Easing = famous.transitions.Easing
-Timer = famous.utilities.Timer
-###
-
-Engine = null
-Scrollview = null
-View = null
+Engine = famous.core.Engine
 
 FView.ready ->
-  # TODO Don't work, see FView code: FView.attrEvalAllowedKeys = ['properties']
-  # Create a test suite
-  #FView.attrEvalAllowedKeys = '*'
-
-  # TODO Is that necessary? Should be transmitted by packages as FView already
-  # use this.
-  Engine = famous.core.Engine
-
   console.info "%c\nfamous-views started\n", \
     "font-weight: 300; color: #ec5f3e; font-size: x-large; \
     font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif; \
@@ -49,6 +45,6 @@ Template.flexGridExample.helpers
     (
       {
         name: "Surface #{idx}"
-        prop: "backgroundColor: hsl(#{idx * 360 / NUM_SURFACES}, 80%, 50%)"
+        color: "backgroundColor: hsl(#{idx * 360 / NUM_SURFACES}, 85%, 40%)"
       } for idx in [1..NUM_SURFACES]
     )

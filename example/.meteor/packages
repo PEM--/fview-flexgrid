@@ -8,9 +8,9 @@ coffeescript
 mquandalle:jade
 pierreeric:cssc
 pierreeric:cssc-colors
-pierreeric:cssc-famous
 pierreeric:cssc-normalize
+raix:famono
 gadicohen:famous-views
 pierreeric:fview-flexgrid
-raix:famono
+pierreeric:cssc-famous
 

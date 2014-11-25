@@ -14,7 +14,4 @@ Package.onUse(function(api) {
     'gadicohen:famous-views@0.1.29'
   ], 'client');
   api.addFiles(['FviewFlexgrid.coffee'], 'client');
-  api.export([
-    'Easing'
-  ], 'client');
 });
