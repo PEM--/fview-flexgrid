@@ -17,7 +17,7 @@ FView.ready ->
       itemSize: [200, 150]
       transition:
         duration: 500
-        curve: Easing.outBack
+        curve: 'easeInOut'
 
     constructor: (@options)->
       super @options

@@ -25,7 +25,6 @@ famous.polyfills
 
 # Required by this package
 # TODO See if import could be better created
-Easing = famous.transitions.Easing
 Engine = famous.core.Engine
 
 FView.ready ->
