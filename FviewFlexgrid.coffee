@@ -6,6 +6,7 @@
 @Transitionable = null
 @TransitionableTransform = null
 @Easing = null
+@Timer = null
 
 FView.ready ->
   View = famous.core.View
@@ -16,6 +17,7 @@ FView.ready ->
   Transitionable = famous.transitions.Transitionable
   TransitionableTransform = famous.transitions.TransitionableTransform
   Easing = famous.transitions.Easing
+  Timer = famous.utilities.Timer
 
   class FlexGrid extends View
     @DEFAULT_OPTIONS:
@@ -23,7 +25,7 @@ FView.ready ->
       marginSide: 0
       gutterCol: 10
       gutterRow: 10
-      itemSize: [150, 150]
+      itemSize: [300, 150]
       transition:
         duration: 300
         curve: Easing.outBack
@@ -112,5 +114,13 @@ FView.ready ->
         specs.push spec
       specs
 
-  # TODO Create an auto registration mecanism
-  FView.registerView 'FlexGrid', FlexGrid
+  FView.registerView 'FlexGrid', FlexGrid,
+    # TODO Hideous: Dirtify context. Hack owing to:
+    # https://github.com/gadicc/meteor-famous-views/issues/157#issuecomment-64124675
+    famousCreatedPost: ->
+      node = @parent
+      node = node.parent until node.id? and node.id is 'mainCtx'
+      [width, height] = node.context._size
+      famous.utilities.Timer.setTimeout ->
+        node.context.setSize [width+1, height+1]
+      , 500

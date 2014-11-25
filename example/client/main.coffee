@@ -17,6 +17,7 @@ Logger.setLevel 'famous-views', 'info'
 # TODO See if import could be better created
 ###
 Easing = famous.transitions.Easing
+Timer = famous.utilities.Timer
 ###
 
 Engine = null
@@ -38,21 +39,16 @@ FView.ready ->
     -webkit-font-smoothing: antialiased;"
 
 Template.flexGridExample.rendered = ->
+  # TODO integrate the Scrollview in the widget as it can't work without it
   fscrollview = FView.byId 'scrollview'
-  Engine.pipe [fscrollview.view]
-  fflexgrid = FView.byId 'flexgrid'
-  Engine.nextTick ->
-    # TODO Compare it with CodePen
-    console.log 'fscrollview', fscrollview.view.getSize()
-    console.log 'fflexgrid', fflexgrid.view.getSize()
-
+  Engine.pipe fscrollview.view
 
 Template.flexGridExample.helpers
   items: ->
-    NB_SURF =  50
+    NUM_SURFACES =  50
     (
       {
         name: "Surface #{idx}"
-        prop: "backgroundColor: hsl(#{idx * 180 / NB_SURF}, 60%, 30%)"
-      } for idx in [1..NB_SURF]
+        prop: "backgroundColor: hsl(#{idx * 360 / NUM_SURFACES}, 60%, 40%)"
+      } for idx in [1..NUM_SURFACES]
     )
