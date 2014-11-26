@@ -1,0 +1,26 @@
+<head>
+  <title>FlexGrid test</title>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, maximum-scale=1, user-scalable=no'>
+  <meta name='apple-mobile-web-app-capable' content='yes'>
+  <meta name='apple-mobile-web-app-status-bar-style' content='black'>
+  <meta name='apple-mobile-web-app-capable' content='yes'>
+  <meta name='mobile-web-app-capable' content='yes'>
+</head>
+<body>
+  {{#famousContext id="mainCtx"}}
+    {{>flexGridExample}}
+  {{/famousContext}}
+</body>
+
+<template name='flexGridExample'>
+  {{#Scrollview id='scrollview'}}
+    {{#FlexGrid id='flexgrid'}}
+      {{#famousEach items}}
+        {{#Surface class='surf' properties=color}}
+          <p>{{name}}</p>
+        {{/Surface}}
+      {{/famousEach}}
+    {{/FlexGrid}}
+  {{/Scrollview}}
+</template>

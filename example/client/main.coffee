@@ -23,8 +23,6 @@ famous.polyfills
 # with the JS engine).
 #famous.core.famous
 
-# Required by this package
-# TODO See if import could be better created
 Engine = famous.core.Engine
 
 FView.ready ->
@@ -34,7 +32,6 @@ FView.ready ->
     -webkit-font-smoothing: antialiased;"
 
 Template.flexGridExample.rendered = ->
-  # TODO integrate the Scrollview in the widget as it can't work without it
   fscrollview = FView.byId 'scrollview'
   Engine.pipe fscrollview.view
 
