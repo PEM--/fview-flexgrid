@@ -47,4 +47,4 @@ With the following attributes and the default values:
 
 The Github repo has 2 neat examples that should make you on track in no time:
 * [A Jade and CoffeeScript example](https://github.com/PEM--/fview-flexgrid/tree/master/example).
-* [A more classical HTML (Blaze) and vanilla JS](https://github.com/PEM--/fview-flexgrid/tree/master/example).
+* [A canonical HTML/Blaze and vanilla JS](https://github.com/PEM--/fview-flexgrid/tree/master/example%20-%20html%20-%20js).
