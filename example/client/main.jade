@@ -1,5 +1,5 @@
 head
-  title FlexGrid test
+  title fview-flexgrid demo
   meta(charset='utf-8')
   meta(name='viewport', content='width=device-width, maximum-scale=1, user-scalable=no')
   meta(name='apple-mobile-web-app-capable', content='yes')
@@ -8,7 +8,13 @@ head
   meta(name='mobile-web-app-capable', content='yes')
 body
   +famousContext id="mainCtx"
+    +overlay
     +flexGridExample
+
+template(name='overlay')
+  +StateModifier id='overlay' align='[.5,.1]' origin='[.5,0]' translate='[0,0,10]' opacity='0'
+    +Surface size='[true, true]' class='overlay'
+      p.text-overlay Resize the window<br>to see the fview-flexgrid in action
 
 template(name='flexGridExample')
   +Scrollview id='scrollview'

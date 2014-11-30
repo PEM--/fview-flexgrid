@@ -6,6 +6,8 @@ This [Famo.us](http://famo.us) plugin brings a flexible grid layout in Blaze or 
 
 ![FlexGrid](https://raw.githubusercontent.com/PEM--/fview-flexgrid/master/assets/output.gif)
 
+**demo**: [fview-flexgrid](http://fview-flexgrid.meteor.com)
+
 ## Usage
 Starts with the usual and add some packages:
 ```bash
