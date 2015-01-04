@@ -38,20 +38,12 @@ FView.ready ->
     font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif; \
     -webkit-font-smoothing: antialiased;"
 
-overlay = null
-
 setOverlayOpacity = ->
+  overlay = FView.byId 'overlay'
+  return false if overlay is undefined
   currentOpacity = overlay.modifier.getOpacity()
   nextOpacity = if currentOpacity > .5 then 0 else 1
   overlay.modifier.setOpacity nextOpacity, duration: 300
-
-Template.overlay.rendered = ->
-  overlay = FView.byId 'overlay'
-  Timer.setInterval setOverlayOpacity, 2000
-
-Template.flexGridExample.rendered = ->
-  fscrollview = FView.byId 'scrollview'
-  Engine.pipe fscrollview.view
 
 Template.flexGridExample.helpers
   items: ->
@@ -62,3 +54,25 @@ Template.flexGridExample.helpers
         color: "backgroundColor: hsl(#{idx * 360 / NUM_SURFACES}, 85%, 40%)"
       } for idx in [1..NUM_SURFACES]
     )
+
+Template.switchRoute.rendered = ->
+  button = (FView.byId 'switchRoute').surface
+  button.on 'click', ->
+    if Router.current().route.getName() is 'second'
+      Router.go '/'
+    else
+      Router.go '/second'
+
+# Configure router and 2 routes
+Router.configure layoutTemplate: 'layout'
+Router.route '/',
+  action: ->
+    @render 'home'
+  onAfterAction: ->
+    Timer.setTimeout ->
+      Timer.setInterval setOverlayOpacity, 2000
+      fscrollview = FView.byId 'scrollview'
+      Engine.pipe fscrollview.view
+    , 100
+
+Router.route '/second'

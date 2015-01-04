@@ -6,19 +6,34 @@ head
   meta(name='apple-mobile-web-app-status-bar-style', content='black')
   meta(name='apple-mobile-web-app-capable', content='yes')
   meta(name='mobile-web-app-capable', content='yes')
-body
-  +famousContext id="mainCtx"
-    +overlay
-    +flexGridExample
 
-template(name='overlay')
-  +StateModifier id='overlay' align='[.5,.1]' origin='[.5,0]' translate='[0,0,10]' opacity='0'
-    +Surface size='[true, true]' class='overlay'
-      p.text-overlay Resize the window<br>to see the fview-flexgrid in action
+template(name='layout')
+  +famousContext id="mainCtx"
+    +switchRoute
+    +RenderController
+      +yield
+
+template(name='switchRoute')
+  +StateModifier align='[0,0]' origin='[0,0]' translate='[10,10,10]'
+    +Surface id='switchRoute' size='[true, true]' class='overlay'
+      p Switch route
+
+template(name='home')
+  +flexGridExample
+
+template(name='second')
+  +StateModifier align='[.5,.5]' origin='[.5,.5]'
+    +Surface size='[true, true]'
+      h1 Second route
 
 template(name='flexGridExample')
-  +Scrollview id='scrollview'
-    +FlexGrid id='flexgrid'
-      +famousEach items
-        +Surface class='surf'  properties=color
-          p= name
+  +StateModifier
+    +StateModifier id='overlay' align='[.5,.1]' origin='[.5,0]' translate='[0,0,10]' opacity='0'
+      +Surface size='[true, true]' class='overlay'
+        p.text-overlay Resize the window<br>to see the fview-flexgrid in action
+    +Scrollview id='scrollview'
+      +FlexGrid id='flexgrid'
+        +famousEach items
+          +Surface class='surf' properties=color
+            p= name
+          
