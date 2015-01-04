@@ -46,14 +46,7 @@ setOverlayOpacity = ->
   overlay.modifier.setOpacity nextOpacity, duration: 300
 
 Template.flexGridExample.helpers
-  items: ->
-    NUM_SURFACES =  50
-    (
-      {
-        name: "Surface #{idx}"
-        color: "backgroundColor: hsl(#{idx * 360 / NUM_SURFACES}, 85%, 40%)"
-      } for idx in [1..NUM_SURFACES]
-    )
+  items: -> Surfaces.find()
 
 Template.switchRoute.rendered = ->
   button = (FView.byId 'switchRoute').surface

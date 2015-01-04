@@ -100,7 +100,7 @@ FView.ready ->
         @_cachedLength = @_sequence.length
       specs = []
       for i in [0...this._modifiers.length]
-        spec = @_modifiers[i].modify target: @_sequence[i].render()
+        spec = @_modifiers[i].modify target: @_sequence[i]?.render()
         specs.push spec
       specs
 
